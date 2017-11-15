@@ -1,8 +1,9 @@
 <template>
   <div class="hello">
     <p>
-      Hi 
+      Hi
     </p>
+    <button v-on:click="editprofile">Edit Profile</button>
     <button v-on:click="logout">Logout</button>
   </div>
 </template>
@@ -22,6 +23,9 @@ export default {
       firebase.auth().signOut().then(() => {
         this.$router.replace('login')
       })
+    },
+    editprofile: function() {
+      this.$router.replace('editprofile')
     }
   }
 }
