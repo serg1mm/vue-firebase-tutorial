@@ -1,11 +1,40 @@
 <template>
-  <div class="sign-up">
-    <p>Let's create a new account!</p>
-    <input type="text" v-model="email" placeholder="Email"><br>
-    <input type="password" v-model="password" placeholder="Password"><br>
-    <button v-on:click="signUp">Sign Up</button>
-    <span>or go back to <router-link to="/login">login</router-link>.</span>
-  </div>
+  <v-app>
+    <v-layout>
+      <v-flex xs12 sm6 offset-sm3 mt-5>
+        <v-card hover>
+          <v-card-media src="https://www.cigionline.org/sites/default/files/styles/affiliate_landscape/public/images/CIGIonline_ipsos-slider.jpeg" height="200px">
+          </v-card-media>
+          <v-card-title cyan-title>
+            <div>
+              <h3 class="headline">Let's create a new account!</h3>
+              <p>...or go back to <router-link to="/login">login</router-link>.</p>
+            </div>
+          </v-card-title>
+          <v-card-text>
+            <div class="sign-up">
+              <v-text-field
+                label="E-mail"
+                v-model="email"
+                :rules="emailRules"
+                required
+                color="cyan"
+              ></v-text-field>
+              <v-text-field
+              label="Password"
+              v-model="password"
+              required
+              color="cyan"
+              type="password" ></v-text-field>
+            </div>
+          </v-card-text>
+          <v-card-actions>
+              <v-btn flat color="cyan" v-on:click="signUp">Sign Up</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-flex>
+      </v-layout>
+     </v-app>
 </template>
 
 <script>
@@ -16,7 +45,11 @@ import firebase from 'firebase'
     data: function(){
       return {
         email: '',
-        password: ''
+        password: '',
+        emailRules: [
+          (v) => !!v || 'E-mail is required',
+          (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+        ]
       }
     },
     methods: {
@@ -35,25 +68,4 @@ import firebase from 'firebase'
 </script>
 
 <style scoped>
-  .singUp {
-    margin-top: 40px;
-  }
-  input {
-    margin: 10px 0;
-    padding: 15px;
-  }
-  button {
-    padding: 10px 20px;
-    background: #42b983;
-    color: white;
-    font-weight: bold;
-    border: none;
-    outline: 0;
-    cursor: pointer;
-  }
-  span {
-    display: block;
-    margin-top: 20px;
-    font-size: 11px;
-  }
 </style>

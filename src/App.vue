@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <transition name="component-fade" mode="out-in">
       <router-view></router-view>
     </transition>
@@ -14,14 +13,6 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 .component-fade-enter-active, .component-fade-leave-active {
   transition: all 1s ease;
 }

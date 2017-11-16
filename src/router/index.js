@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 import Hello from '@/components/Hello'
 import Login from '@/components/Login'
-import SignUp from '@/components/SignUp'
+import SignUp from '@/components/Signup'
 import Editprofile from '@/components/Editprofile'
 import firebase from 'firebase'
 

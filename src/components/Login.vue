@@ -1,13 +1,40 @@
 <template>
-  <div class="login">
-    <h3>Sign In</h3>
-    <input type="text" v-model="email" placeholder="Email"><br>
-    <input type="password" v-model="password"  placeholder="Password"><br>
-    <button v-on:click="signIn">Connection</button>
-    <p>
-      You don't have an account? You can <router-link to="/sign-up">create one</router-link>
-    </p>
-  </div>
+<v-app>
+  <v-layout>
+    <v-flex xs12 sm6 offset-sm3 mt-5>
+      <v-card hover>
+        <v-card-media src="https://www.cigionline.org/sites/default/files/styles/affiliate_landscape/public/images/CIGIonline_ipsos-slider.jpeg" height="200px">
+        </v-card-media>
+        <v-card-title cyan-title>
+          <div>
+            <h3 class="headline">Who are you?</h3>
+            <p>You don't have an account? You can <router-link to="/sign-up">create one here</router-link>!</p>
+          </div>
+        </v-card-title>
+        <v-card-text>
+          <div class="login">
+            <v-text-field
+              label="E-mail"
+              v-model="email"
+              :rules="emailRules"
+              required
+              color="cyan"
+            ></v-text-field>
+            <v-text-field
+            label="Password"
+            v-model="password"
+            required
+            color="cyan"
+            type="password" ></v-text-field>
+          </div>
+        </v-card-text>
+        <v-card-actions>
+         <v-btn flat color="cyan" v-on:click="signIn" >Login</v-btn>
+       </v-card-actions>
+     </v-card>
+   </v-flex>
+ </v-layout>
+</v-app>
 </template>
 
 <script>
@@ -18,14 +45,18 @@ import firebase from 'firebase'
     data: function() {
       return {
         email: '',
-        password: ''
+        password: '',
+        emailRules: [
+          (v) => !!v || 'E-mail is required',
+          (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+        ]
       }
     },
     methods: {
       signIn: function() {
         firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
           (user) => {
-            console.log(user.displayName, " is here.")
+            console.log(user.displayName, "is here.")
             this.$router.replace('hello')
           },
           (err) => {
@@ -38,28 +69,5 @@ import firebase from 'firebase'
 </script>
 
 <style scoped>
-  .login {
-    margin-top: 40px;
-  }
-  input {
-    margin: 10px 0;
-    padding: 15px;
-  }
-  button {
-    padding: 10px 20px;
-    background: #42b983;
-    color: white;
-    font-weight: bold;
-    border: none;
-    outline: 0;
-    cursor: pointer;
-  }
-  p {
-    margin-top: 40px;
-    font-size: 13px;
-  }
-  p a {
-    text-decoration: underline;
-    cursor: pointer;
-  }
+
 </style>
