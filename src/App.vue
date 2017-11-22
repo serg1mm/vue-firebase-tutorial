@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <transition name="component-fade" mode="out-in">
-      <router-view></router-view>
-    </transition>
+          <transition name="component-fade" mode="out-in">
+            <router-view></router-view>
+          </transition>
   </div>
 </template>
 
@@ -13,12 +13,18 @@ export default {
 </script>
 
 <style>
-.component-fade-enter-active, .component-fade-leave-active {
-  transition: all 1s ease;
+.card--hover {
+  cursor:default!important;
 }
-.component-fade-enter, .component-fade-leave-to
-/* .component-fade-leave-active below version 2.1.8 */ {
+body{margin:0;padding:0;overflow:hidden;background: #eee!important;}
+.application.theme--light {
+  background: #eee!important;
+}
+.component-fade-enter-active, .component-fade-leave-active {
+  transition: all .5s ease;
+}
+.component-fade-enter, .component-fade-leave-to {
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(25%);
 }
 </style>
