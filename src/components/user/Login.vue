@@ -16,7 +16,7 @@
                     <div>
                         <h3 class="headline">Who are you?</h3>
                         <p>You don't have an account? You can
-                            <router-link to="/sign-up">create one here</router-link>!</p>
+                            <router-link to="/user/sign-up">create one here</router-link>!</p>
                     </div>
                 </v-card-title>
                 <v-card-text>
@@ -58,6 +58,7 @@ export default {
                 (user) => {
                     console.log(user.displayName, "is here.")
                     this.$router.replace('hello')
+
                 }, (err) => {
                     alert('Oops. ' + err.message)
                 }

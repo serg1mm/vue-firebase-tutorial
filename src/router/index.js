@@ -2,9 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Hello from '@/components/Hello'
-import Login from '@/components/Login'
-import SignUp from '@/components/Signup'
-import Editprofile from '@/components/Editprofile'
+import Login from '@/components/user/Login'
+import SignUp from '@/components/user/Signup'
+import Editprofile from '@/components/user/Editprofile'
 import firebase from 'firebase'
 
 Vue.use(Router)
