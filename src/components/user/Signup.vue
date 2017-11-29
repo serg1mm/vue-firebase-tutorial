@@ -128,7 +128,7 @@ export default {
                 address: this.address,
                 city: this.city,
                 state: this.state,
-                zip: this.zip,
+                zip: this.zip, 
                 country: this.country
             }
         }
