@@ -29,7 +29,6 @@
                     <div class="editprofile">
                         <v-container fluid grid-list-md>
                             <v-layout row wrap>
-
                                 <v-flex xs12 sm6>
                                     <v-text-field v-model="name" required color="cyan" placeholder="Name" :rules="[() => !!name || 'This field is required']" :error-messages="errorMessages" id="name" autocomplete="off"></v-text-field>
                                 </v-flex>
