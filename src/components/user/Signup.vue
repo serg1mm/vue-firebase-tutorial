@@ -82,6 +82,8 @@
                     </router-link>
                     <v-spacer></v-spacer>
                     <v-btn flat color="cyan" v-on:click="signUp">Next</v-btn>
+                    <v-spacer></v-spacer>
+                    <v-btn flat color="error" v-on:click="signGup">Google +</v-btn>
                 </v-card-actions>
             </v-card>
 
@@ -95,6 +97,8 @@
 <script>
 
 import firebase from 'firebase'
+var provider = new firebase.auth.GoogleAuthProvider();
+
 
 export default {
     name: 'signUp',
@@ -128,7 +132,7 @@ export default {
                 address: this.address,
                 city: this.city,
                 state: this.state,
-                zip: this.zip, 
+                zip: this.zip,
                 country: this.country
             }
         }
@@ -147,6 +151,20 @@ export default {
                     alert('Oops. ' + err.message)
                 }
             );
+        },
+        signGup: function() {
+          firebase.auth().signInWithPopup(provider).then(
+            (user) => {
+            this.$router.replace('hello')
+            console.log('Hello ' + user.displayName)
+          }, (error) => {
+            alert('Oops. ' + error.code)
+            alert('Oops. ' + error.message)
+            alert('Oops. ' + error.email)
+            alert('Oops. ' + error.credential)
+            // ...
+          }
+        );
         }
     }
 }
